@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const { MONGO_URI } = process.env;
-console.log(MONGO_URI);
+
 exports.connect = () => {
     //connecting to the database
     mongoose.connect(
-        MONGO_URI, {
+        "mongodb+srv://enmhassan:fpVmF1VpgRzjB0yu@cluster0.ho0mqai.mongodb.net/?retryWrites=true&w=majority", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         }
