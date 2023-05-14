@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const app = express();
 const express = require('express')
+const app = express();
 
 const { MONGO_URI } = process.env;
 
