@@ -7,6 +7,12 @@ const app = express();
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose");
 
+// Set the view engine to Pug
+app.set('view engine', 'pug');
+
+// Set the directory where your Pug templates will be stored
+app.set('views', './views');
+
 app.use(express.json())
 app.use(cookieParser())
 // importing user context
@@ -44,7 +50,7 @@ connect();
 
 
 // Register
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
     try {
         //get user input
         const { first_name, last_name, email, password } = req.body;
@@ -85,7 +91,7 @@ app.post("/register", async (req, res) => {
 });
 
 // Login
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
     try {
         //get user input
         const { email, password } = req.body;
