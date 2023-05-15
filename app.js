@@ -96,8 +96,6 @@ app.post("/api/login", async (req, res) => {
     try {
         //get user input
         const { email, password } = req.body;
-        console.log(email)
-        console.log(password)
         //validate user input
         if(!(email && password)) {
             res.status(400).send("All inputs are required");
@@ -121,7 +119,6 @@ app.post("/api/login", async (req, res) => {
             //user
             res.status(200).json(user);
         } else {
-        console.log("failureeeeeeeeeeeeeeeeeeeeeeeeeeee")
         // res.status(400).send("Invalid Credentials");
         }
     } catch (err) {
@@ -137,7 +134,7 @@ app.get("/login", (req, res) => {
 
 
 //Welcome page authenticated
-app.get("/welcome", (req, res) => {
+app.get("/welcome", auth, (req, res) => {
     res.status(200).send("Welcome !!!");
 });
 
