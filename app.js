@@ -122,7 +122,7 @@ app.post("/api/login", async (req, res) => {
             res.status(200).json(user);
         } else {
         console.log("failureeeeeeeeeeeeeeeeeeeeeeeeeeee")
-        res.status(400).send("Invalid Credentials");
+        // res.status(400).send("Invalid Credentials");
         }
     } catch (err) {
         console.log(err);
@@ -139,7 +139,6 @@ app.get("/login", (req, res) => {
 //Welcome page authenticated
 app.get("/welcome", (req, res) => {
     res.status(200).send("Welcome !!!");
-    console.log(req.cookies.token)
 });
 
 module.exports = app;
