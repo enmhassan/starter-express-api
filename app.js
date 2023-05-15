@@ -123,8 +123,8 @@ app.post("/login", async (req, res) => {
 
 //Welcome page authenticated
 app.get("/welcome", (req, res) => {
-    console.log(Object.keys(req.cookies))
-    res.status(200).send("Welcome !!!")
+    res.status(200).send("Welcome !!!");
+    console.log(req.cookies.token)
 });
 
 module.exports = app;
