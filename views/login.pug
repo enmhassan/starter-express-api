@@ -3,7 +3,7 @@ html
         title login
     body
         h1 login
-        form(action='/api/login', method='POST')
+        form(action='/api/login', method='POST' enctype="application/x-www-form-urlencoded")
             label(for="email") Email: 
             input(type="email", name="email")
             label(for="password") Password: 

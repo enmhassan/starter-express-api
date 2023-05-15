@@ -7,14 +7,15 @@ const app = express();
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose");
 
+app.use(express.json())
+app.use(cookieParser())
+
 // Set the view engine to Pug
 app.set('view engine', 'pug');
 
 // Set the directory where your Pug templates will be stored
 app.set('views', './views');
 
-app.use(express.json())
-app.use(cookieParser())
 // importing user context
 const User = require("./app/models/user");
 
@@ -95,7 +96,6 @@ app.post("/api/login", async (req, res) => {
     try {
         //get user input
         const { email, password } = req.body;
-        console.log(req)
         //validate user input
         if(!(email && password)) {
             res.status(400).send("All inputs are required");
