@@ -49,7 +49,7 @@ const connect = () => {
 connect();
 
 
-// Register
+// Register API
 app.post("/api/register", async (req, res) => {
     try {
         //get user input
@@ -90,7 +90,7 @@ app.post("/api/register", async (req, res) => {
     }
 });
 
-// Login
+// Login API
 app.post("/api/login", async (req, res) => {
     try {
         //get user input
@@ -123,6 +123,12 @@ app.post("/api/login", async (req, res) => {
     } catch (err) {
         console.log(err);
     }
+});
+
+
+//Login page
+app.get("/login", (req, res) => {
+    res.status(200).render('login');
 });
 
 
