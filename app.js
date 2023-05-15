@@ -117,7 +117,7 @@ app.post("/api/login", async (req, res) => {
             //set the token as a cookie
             res.cookie('token', token, { sameSite: false, httpOnly: false })
             //user
-            res.status(200).json(user);
+            return res.redirect('/welcome')
         } else {
         // res.status(400).send("Invalid Credentials");
         }
