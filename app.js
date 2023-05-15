@@ -119,6 +119,7 @@ app.post("/api/login", async (req, res) => {
             //user
             res.status(200).json(user);
         } else {
+        console.log("failureeeeeeeeeeeeeeeeeeeeeeeeeeee")
         res.status(400).send("Invalid Credentials");
         }
     } catch (err) {
