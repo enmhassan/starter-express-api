@@ -96,6 +96,8 @@ app.post("/api/login", async (req, res) => {
     try {
         //get user input
         const { email, password } = req.body;
+        console.log(email)
+        console.log(password)
         //validate user input
         if(!(email && password)) {
             res.status(400).send("All inputs are required");
