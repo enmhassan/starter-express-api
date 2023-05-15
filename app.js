@@ -6,7 +6,7 @@ const auth = require("./app/middlewares/auth")
 const app = express();
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose");
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(cookieParser())
 
