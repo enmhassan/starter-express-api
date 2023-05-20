@@ -105,6 +105,8 @@ app.post("/api/register", async (req, res) => {
         );
         //save user token
         user.token = token
+        //set the token as a cookie
+        res.cookie('token', token, { sameSite: false, httpOnly: false })
         //return new user
         res.status(201).redirect('/');
     } catch (err) {
