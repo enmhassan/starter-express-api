@@ -12,6 +12,8 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 //custom middleware to authorize access for pages
 const auth = require("./app/middlewares/auth")
+//limit the rate of requests based on a predefined threshold
+const limiter = require('/app/middlewares/ratelimiter')
 //cookie-parser is middleware that parses cookies in incoming requests
 const cookieParser = require("cookie-parser")
 //mongoose is a MongoDB object modeling tool that allows us to interact with the database in an easy and intuitive way
@@ -26,7 +28,8 @@ app.use(express.urlencoded({ extended: true }));
 //which is commonly used in modern web applications that use APIs. 
 //This middleware will also parse the data and add it to the req.body object in the request object.
 app.use(express.json())
-
+//use limiter middleware to imit the rate of requests based on a predefined threshold.
+app.use(limiter);
 // Middleware to parse cookies in incoming requests
 app.use(cookieParser())
 
@@ -106,7 +109,7 @@ app.post("/api/register", async (req, res) => {
         //save user token
         user.token = token
         //set the token as a cookie
-        res.cookie('token', token, { sameSite: false, httpOnly: true })
+        res.cookie('token', token, { sameSite: true, httpOnly: true })
         //return new user
         res.status(201).redirect('/');
     } catch (err) {
@@ -132,13 +135,13 @@ app.post("/api/login", async (req, res) => {
                 { user_id: user._id, email },
                 TOKEN_KEY, 
                 {
-                    expiresIn: "2h",
+                    expiresIn: "15m",
                 }
             )
              //save user token
             user.token = token;
             //set the token as a cookie
-            res.cookie('token', token, { sameSite: false, httpOnly: true })
+            res.cookie('token', token, { sameSite: true, httpOnly: true })
             //user
             return res.redirect('/')
         } else {
