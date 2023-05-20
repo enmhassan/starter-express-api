@@ -152,6 +152,7 @@ app.post("/api/login", async (req, res) => {
 app.post("/api/logout", auth, async(req, res) => {
     try {
         // Get the user from the request object
+        console.log(req)
         const email = req.email;
         const user = await User.findOne({ email });
         console.log(user)
