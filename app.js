@@ -171,6 +171,10 @@ app.post("/api/logout", auth, async(req, res) => {
 
 //Login page
 app.get("/login", (req, res) => {
+    const token = req.cookies.token;
+    if (token) {
+        return res.redirect('/')
+    }
     res.status(200).render('login');
 });
 
