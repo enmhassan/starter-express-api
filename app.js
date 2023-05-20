@@ -106,7 +106,7 @@ app.post("/api/register", async (req, res) => {
         //save user token
         user.token = token
         //return new user
-        res.status(201).json(user);
+        res.status(201).redirect('/');
     } catch (err) {
         console.log(err);
     }
