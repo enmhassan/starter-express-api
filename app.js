@@ -17,7 +17,7 @@ const limiter = require('./app/middlewares/ratelimiter')
 //cookie-parser is middleware that parses cookies in incoming requests
 const cookieParser = require("cookie-parser")
 //mongoose is a MongoDB object modeling tool that allows us to interact with the database in an easy and intuitive way
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 //urlencoded middleware is used to parse incoming request bodies in URL-encoded format, 
 //which is typically used for HTML form submissions. 
