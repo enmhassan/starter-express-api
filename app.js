@@ -16,8 +16,8 @@ const auth = require("./app/middlewares/auth")
 const limiter = require('./app/middlewares/ratelimiter')
 //cookie-parser is middleware that parses cookies in incoming requests
 const cookieParser = require("cookie-parser")
-//mongoose is a MongoDB object modeling tool that allows us to interact with the database in an easy and intuitive way
-// const mongoose = require("mongoose");
+//get database connect function from database.js
+const mongoose = require('./config/database');
 
 //urlencoded middleware is used to parse incoming request bodies in URL-encoded format, 
 //which is typically used for HTML form submissions. 
@@ -50,30 +50,6 @@ const { API_PORT } = process.env;
 const port = process.env.PORT || API_PORT;
 
 //coonect to db
-// const connect = () => {
-//     //connecting to the database
-//     mongoose.connect(
-//         "mongodb+srv://enmhassan:fpVmF1VpgRzjB0yu@cluster0.ho0mqai.mongodb.net/?retryWrites=true&w=majority", {
-//             useNewUrlParser: true,
-//             useUnifiedTopology: true,
-//         }
-//     )
-//     .then(() => {
-//         console.log("Successfully connected to database")
-//         app.listen(port, ()=>{
-//             console.log(`Server is listening on port ${port}`)
-//         })
-//     })
-//     .catch((error) => {
-//         console.log("database connection failed");
-//         console.error(error);
-//         process.exit(1);
-//     });
-// };
-
-// connect();
-const mongoose = require('./config/database');
-
 mongoose.connection.once('open', () => {
     console.log("Successfully connected to database")
     app.listen(port, ()=>{
@@ -203,8 +179,8 @@ app.get("/register", (req, res) => {
 //Welcome page authenticated
 app.get("/", auth, (req, res) => {
     const email = req.user.email;
-    const user = User.findOne({ email })
-    const userName = user.user_name
+    const user = User.findOne({ email });
+    const userName = user.first_name
     res.status(200).render('index', {userName: userName});
 });
 

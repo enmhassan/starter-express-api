@@ -1,3 +1,4 @@
+//mongoose is a MongoDB object modeling tool that allows us to interact with the database in an easy and intuitive way
 const mongoose = require("mongoose");
 
     //connecting to the database
