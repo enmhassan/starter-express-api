@@ -1,13 +1,33 @@
+// Load environment variables from .env file
 require("dotenv").config()
+
+// Import the required dependencies
+
+//The express module is used to create the web application
 const express = require('express')
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
-const auth = require("./app/middlewares/auth")
 const app = express();
+//bcryptjs is used for hashing passwords
+const bcrypt = require("bcryptjs")
+//jsonwebtoken is used for creating and verifying JSON Web Tokens
+const jwt = require("jsonwebtoken")
+//custom middleware to authorize access for pages
+const auth = require("./app/middlewares/auth")
+//cookie-parser is middleware that parses cookies in incoming requests
 const cookieParser = require("cookie-parser")
+//mongoose is a MongoDB object modeling tool that allows us to interact with the database in an easy and intuitive way
 const mongoose = require("mongoose");
+
+//urlencoded middleware is used to parse incoming request bodies in URL-encoded format, 
+//which is typically used for HTML form submissions. 
+//This middleware will parse the data and add it to the req.body object in the request object.
 app.use(express.urlencoded({ extended: true }));
+
+//json middleware is used to parse incoming request bodies in JSON format, 
+//which is commonly used in modern web applications that use APIs. 
+//This middleware will also parse the data and add it to the req.body object in the request object.
 app.use(express.json())
+
+// Middleware to parse cookies in incoming requests
 app.use(cookieParser())
 
 // Set the view engine to Pug
@@ -22,6 +42,7 @@ const User = require("./app/models/user");
 //Generate token key
 const TOKEN_KEY = process.env.TOKEN_KEY;
 
+//Get port from .env
 const { API_PORT } = process.env;
 const port = process.env.PORT || API_PORT;
 
@@ -127,6 +148,24 @@ app.post("/api/login", async (req, res) => {
 });
 
 
+//Logout api
+app.post("/api/logout", auth, async(req, res) => {
+    try {
+        // Get the user from the request object
+        const user = req.user;        
+        // Clear the user token in the database
+        user.token = null;
+        await user.save();
+        //Clear the token cookie in the response
+        res.clearCookie("token");
+        //Redirect the user to the login page
+        return res.redirect('/login');
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+
 //Login page
 app.get("/login", (req, res) => {
     res.status(200).render('login');
@@ -134,8 +173,8 @@ app.get("/login", (req, res) => {
 
 
 //Welcome page authenticated
-app.get("/welcome", auth, (req, res) => {
-    res.status(200).send("Welcome !!!");
+app.get("/", auth, (req, res) => {
+    res.status(200).render('index');
 });
 
 module.exports = app;
