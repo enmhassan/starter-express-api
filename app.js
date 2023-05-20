@@ -138,7 +138,7 @@ app.post("/api/login", async (req, res) => {
             //set the token as a cookie
             res.cookie('token', token, { sameSite: false, httpOnly: false })
             //user
-            return res.redirect('/welcome')
+            return res.redirect('/')
         } else {
         // res.status(400).send("Invalid Credentials");
         }
@@ -152,7 +152,7 @@ app.post("/api/login", async (req, res) => {
 app.post("/api/logout", auth, async(req, res) => {
     try {
         // Get the user from the request object
-        const user = req.user;        
+        const user = req.cookies.email; 
         // Clear the user token in the database
         user.token = null;
         await user.save();
