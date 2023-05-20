@@ -180,6 +180,10 @@ app.get("/login", (req, res) => {
 
 //Register page
 app.get("/register", (req, res) => {
+    const token = req.cookies.token;
+    if (token) {
+        return res.redirect('/')
+    }
     res.status.render('register');
 })
 
