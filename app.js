@@ -179,7 +179,7 @@ app.get("/login", (req, res) => {
 
 
 //Register page
-app.post("/register", (req, res) => {
+app.get("/register", (req, res) => {
     res.status.render('register');
 })
 
