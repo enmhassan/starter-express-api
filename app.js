@@ -179,9 +179,15 @@ app.get("/register", (req, res) => {
 //Welcome page authenticated
 app.get("/", auth, (req, res) => {
     const email = req.user.email;
-    const user = User.findOne({ email });
-    const userName = user.first_name
-    res.status(200).render('index', {userName: userName});
+    User.findOne({ email })
+        .then(user => {
+            const userName = user.first_name;
+            res.status(200).render('index', { userName });
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send('Internal Server Error');
+        });
 });
 
 module.exports = app;
