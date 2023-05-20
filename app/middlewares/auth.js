@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
         // || req.body.token || req.query.token || req.headers["x-access-token"];
     // console.log(token)
     if (!token) {
-        return res.status(403).send("A token is required for authentication")
+        return res.redirect('login')
     }
     try {
         const decoded = jwt.verify(token, config.TOKEN_KEY);
