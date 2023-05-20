@@ -2,6 +2,6 @@ html
     head 
         title UXISpace 
     body 
-        h1 Welcome to UXISpace 
+        h1 Welcome #{userName} to UXISpace 
         form(action="/api/logout", method="POST", enctype="application/x-www-form-urlencoded")
             button(type="submit") Logout 

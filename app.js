@@ -195,7 +195,10 @@ app.get("/register", (req, res) => {
 
 //Welcome page authenticated
 app.get("/", auth, (req, res) => {
-    res.status(200).render('index');
+    const email = req.user.email;
+    const user = User.findOne({ email })
+    const userName = user.user_name
+    res.status(200).render('index', {userName: userName});
 });
 
 module.exports = app;
