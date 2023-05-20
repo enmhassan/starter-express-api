@@ -184,7 +184,7 @@ app.get("/register", (req, res) => {
     if (token) {
         return res.redirect('/')
     }
-    res.status.render('register');
+    res.status(200).render('register');
 })
 
 
