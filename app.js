@@ -168,7 +168,6 @@ app.post("/api/logout", auth, async(req, res) => {
     }
 })
 
-
 //Login page
 app.get("/login", (req, res) => {
     const token = req.cookies.token;
@@ -177,6 +176,12 @@ app.get("/login", (req, res) => {
     }
     res.status(200).render('login');
 });
+
+
+//Register page
+app.post("/register", (req, res) => {
+    res.status.render('register');
+})
 
 
 //Welcome page authenticated

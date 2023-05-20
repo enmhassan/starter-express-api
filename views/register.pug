@@ -1,0 +1,14 @@
+html 
+    head  
+        title Registration 
+    body 
+        form(action="/api/register", method="post" enctype="application/x-www-form-urlencoded")
+            label(for="first_name") First Name: 
+            input(type="text", name="first_name")
+            label(for="last_name") Last Name: 
+            input(type="text", name="last_name")
+            label(for="email") Email: 
+            input(type="email", name="email")
+            label(for="password") Password: 
+            input(type="password", name="password")
+            button(type="submit") Register    
