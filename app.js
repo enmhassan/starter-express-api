@@ -13,7 +13,7 @@ const jwt = require("jsonwebtoken")
 //custom middleware to authorize access for pages
 const auth = require("./app/middlewares/auth")
 //limit the rate of requests based on a predefined threshold
-const limiter = require('/app/middlewares/ratelimiter')
+const limiter = require('./app/middlewares/ratelimiter')
 //cookie-parser is middleware that parses cookies in incoming requests
 const cookieParser = require("cookie-parser")
 //mongoose is a MongoDB object modeling tool that allows us to interact with the database in an easy and intuitive way
