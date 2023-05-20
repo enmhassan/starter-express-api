@@ -106,7 +106,7 @@ app.post("/api/register", async (req, res) => {
         //save user token
         user.token = token
         //set the token as a cookie
-        res.cookie('token', token, { sameSite: false, httpOnly: false })
+        res.cookie('token', token, { sameSite: false, httpOnly: true })
         //return new user
         res.status(201).redirect('/');
     } catch (err) {
@@ -138,7 +138,7 @@ app.post("/api/login", async (req, res) => {
              //save user token
             user.token = token;
             //set the token as a cookie
-            res.cookie('token', token, { sameSite: false, httpOnly: false })
+            res.cookie('token', token, { sameSite: false, httpOnly: true })
             //user
             return res.redirect('/')
         } else {
