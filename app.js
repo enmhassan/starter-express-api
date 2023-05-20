@@ -50,29 +50,36 @@ const { API_PORT } = process.env;
 const port = process.env.PORT || API_PORT;
 
 //coonect to db
-const connect = () => {
-    //connecting to the database
-    mongoose.connect(
-        "mongodb+srv://enmhassan:fpVmF1VpgRzjB0yu@cluster0.ho0mqai.mongodb.net/?retryWrites=true&w=majority", {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        }
-    )
-    .then(() => {
-        console.log("Successfully connected to database")
-        app.listen(port, ()=>{
-            console.log(`Server is listening on port ${port}`)
-        })
+// const connect = () => {
+//     //connecting to the database
+//     mongoose.connect(
+//         "mongodb+srv://enmhassan:fpVmF1VpgRzjB0yu@cluster0.ho0mqai.mongodb.net/?retryWrites=true&w=majority", {
+//             useNewUrlParser: true,
+//             useUnifiedTopology: true,
+//         }
+//     )
+//     .then(() => {
+//         console.log("Successfully connected to database")
+//         app.listen(port, ()=>{
+//             console.log(`Server is listening on port ${port}`)
+//         })
+//     })
+//     .catch((error) => {
+//         console.log("database connection failed");
+//         console.error(error);
+//         process.exit(1);
+//     });
+// };
+
+// connect();
+const mongoose = require('./config/database');
+
+mongoose.connection.once('open', () => {
+    console.log("Successfully connected to database")
+    app.listen(port, ()=>{
+        console.log(`Server is listening on port ${port}`)
     })
-    .catch((error) => {
-        console.log("database connection failed");
-        console.error(error);
-        process.exit(1);
-    });
-};
-
-connect();
-
+})
 
 // Register API
 app.post("/api/register", async (req, res) => {
