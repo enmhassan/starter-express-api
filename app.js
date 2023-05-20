@@ -13,7 +13,7 @@ const jwt = require("jsonwebtoken")
 //custom middleware to authorize access for pages
 const auth = require("./app/middlewares/auth")
 //limit the rate of requests based on a predefined threshold
-const rateLimiter = require('/app/middlewares/ratelimiter')
+const limiter = require('/app/middlewares/ratelimiter')
 //cookie-parser is middleware that parses cookies in incoming requests
 const cookieParser = require("cookie-parser")
 //mongoose is a MongoDB object modeling tool that allows us to interact with the database in an easy and intuitive way
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 //This middleware will also parse the data and add it to the req.body object in the request object.
 app.use(express.json())
 //use limiter middleware to imit the rate of requests based on a predefined threshold.
-app.use(rateLimiter);
+app.use(limiter);
 // Middleware to parse cookies in incoming requests
 app.use(cookieParser())
 
