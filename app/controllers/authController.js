@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken")
 // importing user context
 const User = require("../models/user");
 
+const TOKEN_KEY = process.env.TOKEN_KEY;
+
 // Register API
 async function register(req, res) {
     try {
