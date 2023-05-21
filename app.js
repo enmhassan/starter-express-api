@@ -11,7 +11,8 @@ const limiter = require('./app/middlewares/ratelimiter')
 const cookieParser = require("cookie-parser")
 //get database connect function from database.js
 const mongoose = require('./config/database');
-
+//importing routes
+const routes = require('./routes');
 //urlencoded middleware is used to parse incoming request bodies in URL-encoded format, 
 //which is typically used for HTML form submissions. 
 //This middleware will parse the data and add it to the req.body object in the request object.
@@ -31,6 +32,9 @@ app.set('view engine', 'pug');
 
 // Set the directory where your Pug templates will be stored
 app.set('views', './views');
+
+//use the router function
+app.use('/', routes);
 
 //Generate token key
 const TOKEN_KEY = process.env.TOKEN_KEY;
