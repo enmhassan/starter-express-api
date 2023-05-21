@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser")
 //get database connect function from database.js
 const mongoose = require('./config/database');
 //importing routes
-const routes = require('./routes');
+const routes = require('./app/routes/index');
 //urlencoded middleware is used to parse incoming request bodies in URL-encoded format, 
 //which is typically used for HTML form submissions. 
 //This middleware will parse the data and add it to the req.body object in the request object.
