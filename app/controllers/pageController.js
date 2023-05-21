@@ -1,5 +1,5 @@
 // importing user context
-const User = require("./app/models/user");
+const User = require("../models/user");
 
 //Login page
 function loginForm(req, res) {

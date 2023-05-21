@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs")
 //jsonwebtoken is used for creating and verifying JSON Web Tokens
 const jwt = require("jsonwebtoken")
 // importing user context
-const User = require("./app/models/user");
+const User = require("../models/user");
 
 // Register API
 async function register(req, res) {
