@@ -5,12 +5,12 @@ const authMiddleware = require('../middlewares/auth');
 const pageController = require('../controllers/pageController')
 
 //Register
-router.post('/register', pageController.registerForm);
+router.get('/register', pageController.registerForm);
 
 //Login
-router.post('/login', pageController.loginForm);
+router.get('/login', pageController.loginForm);
 
 //Logout
-router.post('/', authMiddleware, pageController.home);
+router.get('/', authMiddleware, pageController.home);
 
 module.exports = router;
