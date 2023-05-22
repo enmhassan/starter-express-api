@@ -13,7 +13,7 @@ function loginForm(req, res) {
 //Register page
 function registerForm(req, res) {
     const token = req.cookies.token;
-    if (token) {
+    if (req.user) {
         return res.redirect('/')
     }
     res.status(200).render('register');

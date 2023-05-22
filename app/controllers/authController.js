@@ -42,7 +42,14 @@ async function register(req, res) {
         //save user token
         user.token = token
         //set the token as a cookie
-        res.cookie('token', token, { sameSite: true, httpOnly: true })
+        expirationTime = 15 * 60 * 1000;
+        const cookieOptions = {
+            expires: new Date(Date.now() + expirationTime),
+            httpOnly: true,
+            sameSite: true
+        };
+        // Set the cookie with the token and expiration time
+        res.cookie('token', token, cookieOptions);
         //return new user
         res.status(201).redirect('/');
     } catch (err) {
@@ -74,7 +81,14 @@ async function login(req, res) {
              //save user token
             user.token = token;
             //set the token as a cookie
-            res.cookie('token', token, { sameSite: true, httpOnly: true })
+            expirationTime = 15 * 60 * 1000;
+            const cookieOptions = {
+                expires: new Date(Date.now() + expirationTime),
+                httpOnly: true,
+                sameSite: true
+            };
+            // Set the cookie with the token and expiration time
+            res.cookie('token', token, cookieOptions);
             //user
             return res.redirect('/')
         } else {
