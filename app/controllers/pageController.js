@@ -3,8 +3,7 @@ const User = require("../models/user");
 
 //Login page
 function loginForm(req, res) {
-    const token = req.cookies.token;
-    if (token) {
+    if (req.user) {
         return res.redirect('/')
     }
     res.status(200).render('login');
