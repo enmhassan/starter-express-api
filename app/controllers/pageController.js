@@ -23,16 +23,19 @@ function registerForm(req, res) {
 
 //home page 
 function home(req, res) {
-    const email = req.user.email;
-    User.findOne({ email })
-        .then(user => {
-            const userName = user.first_name;
-            res.status(200).render('index', { userName });
-        })
-        .catch(error => {
-            console.log(error);
-            res.status(500).send('Internal Server Error');
-        });
+    const token = req.cookies.token;
+    if (token) {
+        const email = req.user.email;
+        User.findOne({ email })
+            .then(user => {
+                const userName = user.first_name;
+                res.status(200).render('index', { userName });
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send('Internal Server Error');
+            });
+        }
 }
 
 module.exports = {
