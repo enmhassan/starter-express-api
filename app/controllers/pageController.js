@@ -34,6 +34,8 @@ function home(req, res) {
                 console.log(error);
                 res.status(500).send('Internal Server Error');
             });
+        } else {
+            res.status(200).render('index');
         }
 }
 
