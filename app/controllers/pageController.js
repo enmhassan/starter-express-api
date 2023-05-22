@@ -22,6 +22,7 @@ function registerForm(req, res) {
 
 //home page 
 function home(req, res) {
+    console.log(req.user)
     if (req.user) {
         const email = req.user.email;
         User.findOne({ email })
