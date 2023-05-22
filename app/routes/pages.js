@@ -11,6 +11,6 @@ router.get('/register', pageController.registerForm);
 router.get('/login', pageController.loginForm);
 
 //Logout
-router.get('/', authMiddleware, pageController.home);
+router.get('/', pageController.home);
 
 module.exports = router;
