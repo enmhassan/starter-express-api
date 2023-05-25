@@ -1,4 +1,6 @@
 extends base.pug
+
+block content
     form(action="/api/register", method="post" enctype="application/x-www-form-urlencoded")
         label(for="first_name") First Name: 
         input(type="text", name="first_name")
