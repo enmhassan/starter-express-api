@@ -7,13 +7,13 @@ const verifyToken = (req, res, next) => {
         // || req.body.token || req.query.token || req.headers["x-access-token"];
     // console.log(token)
     if (!token && req.path !== '/login') {
-        return res.redirect('login')
+        res.redirect('login')
     }
     try {
         const decoded = jwt.verify(token, config.TOKEN_KEY);
         req.user = decoded;
     } catch (err) {
-        return res.status(401);
+        res.status(401);
     }
     return next();
 };
