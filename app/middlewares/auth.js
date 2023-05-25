@@ -6,7 +6,7 @@ const verifyToken = (req, res, next) => {
     const token = req.cookies.token;
         // || req.body.token || req.query.token || req.headers["x-access-token"];
     // console.log(token)
-    if (!token) {
+    if (!token && req.path !== '/login') {
         return res.redirect('login')
     }
     try {
