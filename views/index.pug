@@ -1,2 +1,5 @@
 extends base.pug
-    h1 Welcome
+h1 Welcome #{userName} to UXISpace
+if userName 
+    form(action="/api/logout", method="POST", enctype="application/x-www-form-urlencoded")
+        button(type="submit") Logout 
