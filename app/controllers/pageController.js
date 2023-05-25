@@ -22,8 +22,8 @@ function registerForm(req, res) {
 
 //home page 
 function home(req, res) {
-    console.log(req.user)
-    if (req.user) {
+    const token = req.cookies.token;
+    if (token) {
         const email = req.user.email;
         User.findOne({ email })
             .then(user => {

@@ -1,7 +1,5 @@
-html 
-    head  
-        title Registration 
-    body 
+extends base.pug
+
         form(action="/api/register", method="post" enctype="application/x-www-form-urlencoded")
             label(for="first_name") First Name: 
             input(type="text", name="first_name")
