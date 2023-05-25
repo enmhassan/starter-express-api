@@ -14,6 +14,7 @@ const verifyToken = (req, res, next) => {
         req.user = decoded;
     } catch (err) {
         if (req.path !== 'login' && req.path !== 'register') {
+            console.log(req)
             return res.status(401).redirect('login');
         } else {
             return res.status(200)
