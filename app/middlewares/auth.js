@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
         const decoded = jwt.verify(token, config.TOKEN_KEY);
         req.user = decoded;
     } catch (err) {
-        if (req.path !== '/login' && req.path !== '/register') {
+        if (req.path !== 'login' && req.path !== 'register') {
             return res.status(401).redirect('login');
         } else {
             return res.status(200)
