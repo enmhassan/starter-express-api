@@ -8,7 +8,7 @@ const pageController = require('../controllers/pageController')
 router.get('/register', pageController.registerForm);
 
 //Login
-router.get('/login',authMiddleware, pageController.loginForm);
+router.get('/login', pageController.loginForm);
 
 //Logout
 router.get('/', pageController.home);
