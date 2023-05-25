@@ -8,14 +8,18 @@ const verifyToken = (req, res, next) => {
         // || req.body.token || req.query.token || req.headers["x-access-token"];
     // console.log(token)
     if (!token) {
-        return res.redirect('login')
+        if (req.path !== '/login' && req.path !== '/register') {
+            return res.status(401).redirect('login')
+        } else {
+            return res.status(200)
+        }
     }
     try {
         const decoded = jwt.verify(token, config.TOKEN_KEY);
         req.user = decoded;
     } catch (err) {
-        if (req.path !== 'login' && req.path !== 'register') {
-            return res.status(401)
+        if (req.path !== '/login' && req.path !== '/register') {
+            return res.status(401).redirect('login')
         } else {
             return res.status(200)
         }
