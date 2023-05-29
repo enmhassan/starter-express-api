@@ -26,7 +26,7 @@ function home(req, res) {
         const email = req.user.email;
         User.findOne({ email })
             .then(user => {
-                const userName = user.first_name;
+                const userName = req.cookies.username;
                 res.status(200).render('index', { userName });
             })
             .catch(error => {
