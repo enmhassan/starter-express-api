@@ -113,6 +113,7 @@ async function logout(req, res) {
         await user.save();
         //Clear the token cookie in the response
         res.clearCookie("token");
+        res.clearCookie("username");
         //Redirect the user to the login page
         return res.redirect('/login');
     } catch (err) {
