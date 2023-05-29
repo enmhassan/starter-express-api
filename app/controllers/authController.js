@@ -89,6 +89,7 @@ async function login(req, res) {
             };
             // Set the cookie with the token and expiration time
             res.cookie('token', token, cookieOptions);
+            res.cookie('username', user.first_name, cookieOptions);
             //user
             return res.redirect('/')
         } else {
