@@ -27,7 +27,7 @@ app.use(limiter);
 // Middleware to parse cookies in incoming requests
 app.use(cookieParser())
 app.use(cors({
-    origin: 'https://uxispace.web.app/',
+    origin: 'https://uxispace.web.app',
     credentials: true,
 }))
 // Set the view engine to Pug
