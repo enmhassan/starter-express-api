@@ -26,7 +26,10 @@ app.use(express.json())
 app.use(limiter);
 // Middleware to parse cookies in incoming requests
 app.use(cookieParser())
-app.use(cors())
+app.use(cors({
+    origin: '*',
+    credentials: true,
+}))
 // Set the view engine to Pug
 app.set('view engine', 'pug');
 
