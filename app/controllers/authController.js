@@ -85,13 +85,14 @@ async function login(req, res) {
             const cookieOptions = {
                 expires: new Date(Date.now() + expirationTime),
                 httpOnly: true,
-                sameSite: true
+                sameSite: 'none'
             };
             // Set the cookie with the token and expiration time
             res.cookie('token', token, cookieOptions);
             res.cookie('username', user.first_name, cookieOptions);
             //user
             // return res.redirect('/')
+            res.status(200).json({ message: 'Successfully logged in' });
         } else {
         // res.status(400).send("Invalid Credentials");
         }
