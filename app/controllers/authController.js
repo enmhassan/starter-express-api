@@ -93,9 +93,9 @@ async function login(req, res) {
             res.cookie('username', user.first_name, cookieOptions);
             //user
             // return res.redirect('/')
-            res.status(200).json({ message: 'Successfully logged in' });
+            res.status(200).json({ token: token });
         } else {
-        // res.status(400).send("Invalid Credentials");
+        res.status(400).send("Invalid Credentials");
         }
     } catch (err) {
         console.log(err);
