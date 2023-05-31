@@ -3,8 +3,8 @@ require("dotenv").config()
 //The express module is used to create the web application
 const express = require('express')
 const app = express();
-//custom middleware to authorize access for pages
-const auth = require("./app/middlewares/auth")
+//configure the server to include the appropriate CORS headers in the response
+const cors = require('cors')
 //limit the rate of requests based on a predefined threshold
 const limiter = require('./app/middlewares/ratelimiter')
 //cookie-parser is middleware that parses cookies in incoming requests
@@ -26,7 +26,7 @@ app.use(express.json())
 app.use(limiter);
 // Middleware to parse cookies in incoming requests
 app.use(cookieParser())
-
+app.use(cors())
 // Set the view engine to Pug
 app.set('view engine', 'pug');
 
