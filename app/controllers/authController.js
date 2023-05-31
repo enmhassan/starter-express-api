@@ -91,7 +91,7 @@ async function login(req, res) {
             res.cookie('token', token, cookieOptions);
             res.cookie('username', user.first_name, cookieOptions);
             //user
-            return res.redirect('/')
+            // return res.redirect('/')
         } else {
         // res.status(400).send("Invalid Credentials");
         }
