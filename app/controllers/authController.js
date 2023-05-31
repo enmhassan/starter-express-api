@@ -85,7 +85,8 @@ async function login(req, res) {
             const cookieOptions = {
                 expires: new Date(Date.now() + expirationTime),
                 httpOnly: true,
-                sameSite: 'none'
+                sameSite: 'none',
+                secure: true,
             };
             // Set the cookie with the token and expiration time
             res.cookie('token', token, cookieOptions);
