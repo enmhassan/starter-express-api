@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, unique: true },
     password: { type: String },
     token: { type: String },
+    clan: { type: mongoose.Schema.Types.ObjectId, ref: 'Clan'}
 });
 
-module.exports = mongoose.model("User", userSchema);
+const User = mogoose.model('User', userSchema)
+module.exports = User;
