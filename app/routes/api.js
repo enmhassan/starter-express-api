@@ -15,7 +15,7 @@ router.post('/login', authController.login);
 router.post('/logout', authMiddleware, authController.logout);
 
 //Create Clan
-router.post('/createclan',authMiddleware, clanController.clan);
+router.post('/createclan', clanController.clan);
 
 
 module.exports = router;
