@@ -8,5 +8,5 @@ const clanSchema = new mongoose.Schema({
     wood: { type: Number, default: 0 },
 });
 
-const Clan = mogoose.model('Clan', clanSchema)
+const Clan = mongoose.model('Clan', clanSchema)
 module.exports = Clan;

@@ -9,5 +9,5 @@ const userSchema = new mongoose.Schema({
     clan: { type: mongoose.Schema.Types.ObjectId, ref: 'Clan'}
 });
 
-const User = mogoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema)
 module.exports = User;
