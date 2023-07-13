@@ -25,6 +25,20 @@ async function clan(req, res) {
     }
 }
 
+async function getClan(req, res) {
+    try {
+        const { user_id } = req.body;
+        const user = await User.findOne({ _id: user_id });
+        const clan_id = user.clan;
+        const clan = await Clan.findOne({ _id: clan_id });
+        res.status(200).json(clan)
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
 module.exports = {
-    clan
+    clan,
+    getClan
 };
