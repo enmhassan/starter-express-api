@@ -16,7 +16,7 @@ async function clan(req, res) {
         const clan = await Clan.create({
             clan_name
         })
-        const user = await User.findOne({user_id});
+        const user = await User.findOne({ _id: user_id });
         user.clan = clan._id;
         await user.save();
         res.status(200).send("Clan created successfully")
